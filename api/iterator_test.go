@@ -3,6 +3,7 @@ package api
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/tendermint/tm-db/memdb"
 	"sync"
 	"testing"
 
@@ -67,7 +68,7 @@ func TestStoreIterator(t *testing.T) {
 	callID1 := startCall()
 	callID2 := startCall()
 
-	store := dbm.NewMemDB()
+	store := memdb.NewDB()
 	var iter dbm.Iterator
 	var index uint64
 	var err error
@@ -101,7 +102,7 @@ func TestStoreIterator(t *testing.T) {
 func TestStoreIteratorHitsLimit(t *testing.T) {
 	callID := startCall()
 
-	store := dbm.NewMemDB()
+	store := memdb.NewDB()
 	var iter dbm.Iterator
 	var err error
 	const limit = 2
@@ -126,7 +127,7 @@ func TestRetrieveIterator(t *testing.T) {
 	callID1 := startCall()
 	callID2 := startCall()
 
-	store := dbm.NewMemDB()
+	store := memdb.NewDB()
 	var iter dbm.Iterator
 	var err error
 
